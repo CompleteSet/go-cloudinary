@@ -113,6 +113,7 @@ type uploadResponse struct {
 	PublicId     string `json:"public_id"`
 	Version      uint   `json:"version"`
 	Format       string `json:"format"`
+	URL          string `json:"url"`
 	ResourceType string `json:"resource_type"` // "image" or "raw"
 	Size         int    `json:"bytes"`         // In bytes
 	Checksum     string // SHA1 Checksum
@@ -454,7 +455,7 @@ func (s *Service) uploadFile(fullPath string, data io.Reader, randomPublicId boo
 				}
 			}
 		}
-		return upInfo.PublicId, nil
+		return upInfo.URL, nil
 	} else {
 		return fullPath, errors.New("Request error: " + resp.Status)
 	}
